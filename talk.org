@@ -1,0 +1,66 @@
+* Clojure en vrai
+* Qui suis-je ?
+
+
+Florent D'halluin
+
+
+ - Data-scientist (et bien plus ...) @ Netheos
+ - email : flo@flal.net
+ - twitter : @flal
+
+* Clojure
+
+
+Un LISP pour la JVM (mais pas que...)
+
+LISP :
+- homoiconicité
+- te force a faire des petites fonctions
+- séparation data/code
+- immutabilité
+- REPL
+
+- interop total avec java, et son écosystème. 
+
+* Relevant XKCD 
+
+
+
+* Le projet : 
+
+
+Une API REST pour papa noël
+
+- On peut créer / consulter une liste 
+
+- Le père Noël peut faire sa liste de course
+
+
+* live-code 
+
+ - lein new beer-api, les bases 
+ - ring  "hello world" 
+ [ring "1.7.1"] 
+ - api "hello world"
+ [metosin/compojure-api "2.0.0-alpha28"]
+ - specs 
+ - sql
+ [org.clojure/java.jdbc "0.7.8"] ;; ...
+ [com.h2database/h2 "1.4.197"] ;; h2 driver
+ [migratus "1.2.0"]
+ [honeysql "0.9.4"]
+
+
+* Clojure, ou pas 
+
+( les moins bon côtés, mais attendez de voir le code)
+
+- Je suis obligé de coder sous EMACS ?
+- la réaction épidermique aux tas de parenthèses
+   => le xkcd 
+- language dynamique
+- l'état des biblios
+   => hé coucou npm !  
+
+
