@@ -3,6 +3,7 @@
             [compojure.api.sweet :refer :all]
             [compojure.route :as route]
             [santa-api.specs :as sp]
+            [santa-api.db :as db]
             [clojure.spec.alpha :as s]
             [ring.adapter.jetty :refer [run-jetty]]))
 
@@ -27,21 +28,25 @@
    (context "/wishlists" []
      (POST "/" []
        :body [w ::sp/wishlist]
-       (response/created (str "OK :" w)))
-
+       (let [r (db/create-wishlist! w)]
+         (response/created (str "/wishlists/" (:id r)))))
+     
      (GET "/" []
        :return (s/coll-of ::sp/wishlist)
-       (response/response [example-wishlist]))
+       (response/response
+        (db/get-all-whishlist)))
 
      (GET "/:id" []
        :path-params [id :- pos-int?]
        :return ::sp/wishlist-detailled
-       (response/response example-wishlist-detailled))
+       (response/response
+        (db/get-wishlist id)))
 
      (POST "/:id" []
        :path-params [id :- pos-int?]
        :body [present ::sp/present]
-       (response/created (str "present added"))))
+       (let [r (db/add-present! id present)]
+         (response/created (str (:id r))))))
 
    (GET "/all-presents" []
      :return ::sp/presents
@@ -53,3 +58,4 @@
   (run-jetty #'handler-api {:port 8080 :join? false}))
 
 ;;(def serv (start-server))
+
