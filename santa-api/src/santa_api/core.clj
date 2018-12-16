@@ -28,6 +28,7 @@
    (context "/wishlists" []
      (POST "/" []
        :body [w ::sp/wishlist]
+
        (let [r (db/create-wishlist! w)]
          (response/created (str "/wishlists/" (:id r)))))
      
@@ -39,18 +40,21 @@
      (GET "/:id" []
        :path-params [id :- pos-int?]
        :return ::sp/wishlist-detailled
-       (response/response
-        (db/get-wishlist id)))
+       (if-let [res (db/get-wishlist id)]
+         (response/response
+          (db/get-wishlist id))
+         (response/not-found "No wishlist found")))
 
      (POST "/:id" []
        :path-params [id :- pos-int?]
        :body [present ::sp/present]
+
        (let [r (db/add-present! id present)]
          (response/created (str (:id r))))))
 
    (GET "/all-presents" []
-     :return ::sp/presents
-     (response/response ["One" "Two" "Three"]))
+     :return (s/coll-of ::sp/present)
+     (response/response (db/get-all-presents 0)))
    
    (route/not-found (response/not-found "Oups"))))
 
@@ -58,4 +62,5 @@
   (run-jetty #'handler-api {:port 8080 :join? false}))
 
 ;;(def serv (start-server))
+
 

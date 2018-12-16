@@ -41,3 +41,11 @@
     (assoc (select-keys (first records) [:recipient :behavior :id])
            :presents (get-presents records))))
 
+
+(defn get-all-presents [min-behavior]
+  (query (-> (select :name [:%count.presents.id :quantity])
+             (from :presents)
+             (join :wishlists [:= :presents.wishlistid :wishlists.id])
+             (where [:>= :wishlists.behavior min-behavior])
+             (group :name))))
+

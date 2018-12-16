@@ -23,5 +23,6 @@
 ;;                {:recipient "Florent" :behavior 8
 ;;                 :presents ["Clojure book" "beers" "hat"]})
 
-(s/def ::present (s/keys :req-un [::name]))
+(s/def ::quantity pos-int?)
+(s/def ::present (s/keys :req-un [::name ::quantity]))
 
