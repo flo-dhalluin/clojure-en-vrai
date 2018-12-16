@@ -36,7 +36,12 @@
      (GET "/:id" []
        :path-params [id :- pos-int?]
        :return ::sp/wishlist-detailled
-       (response/response example-wishlist-detailled)))
+       (response/response example-wishlist-detailled))
+
+     (POST "/:id" []
+       :path-params [id :- pos-int?]
+       :body [present ::sp/present]
+       (response/created (str "present added"))))
 
    (GET "/all-presents" []
      :return ::sp/presents
