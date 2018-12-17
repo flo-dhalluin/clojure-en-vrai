@@ -1,4 +1,6 @@
 * Clojure en vrai
+
+
 * Qui suis-je ?
 
 
@@ -9,58 +11,71 @@ Florent D'halluin
  - email : flo@flal.net
  - twitter : @flal
 
-* Clojure
+* Clojure ?
 
 
-Un LISP pour la JVM (mais pas que...)
+Un __LISP__ pour la JVM (mais pas que...)
 
-LISP :
-- homoiconicité
-- te force a faire des petites fonctions
+[[./img/lisp_xkcd.png]]
+
+* Pourquoi Clojure 
+
+
+- Programmation interactive
+- JVM => pas besoin de réinventer la roue
+- Un language fonctionnel :  force a découper en **petites** fonctions
+- immutabilité partout
 - séparation data/code
-- immutabilité
-- REPL
+-  code **is** data ( homoiconicité ) => :  meta-programation, DSLs 
 
-- interop total avec java, et son écosystème. 
-
-* Relevant XKCD 
-
-
-
-* Le projet : 
-
+* L'exercice du jour : Les specs 
 
 Une API REST pour papa noël
 
-- On peut créer / consulter une liste 
+- On peut créer / consulter une liste. Et ajouter des cadeaux
 
 - Le père Noël peut faire sa liste de course
 
+* live-code 1 : clojure basics
 
-* live-code 
+On fait chauffer lein ! 
 
- - lein new beer-api, les bases 
- - ring  "hello world" 
+* live-code 2 : Ring et Compojure-api
+
  [ring "1.7.1"] 
- - api "hello world"
+
  [metosin/compojure-api "2.0.0-alpha28"]
- - specs 
- - sql
- [org.clojure/java.jdbc "0.7.8"] ;; ...
- [com.h2database/h2 "1.4.197"] ;; h2 driver
- [migratus "1.2.0"]
- [honeysql "0.9.4"]
+
+ 
+* live-code 3 : specs à la rescousse
+
+ Définissons notre modèle de données 
+
+ Et notre api !
+
+* live-code 4 : SQL avec honeysql 
+
+* live-code 5 : toutes les fonctions sql complètes
+
+* live-code 6 : api <-> db 
+
+* live-code 7 : api "listes de course"
+
+* Mais encore 
 
 
-* Clojure, ou pas 
+- Programmation asynchrone
+- Clojurescript : Clojure pour le front (ou node...)
+- Injection de dependances 
+- le formidable écosystème
 
-( les moins bon côtés, mais attendez de voir le code)
+* Clojure : ou pas  
 
-- Je suis obligé de coder sous EMACS ?
-- la réaction épidermique aux tas de parenthèses
-   => le xkcd 
-- language dynamique
-- l'état des biblios
-   => hé coucou npm !  
-
+- tas de parenthèses
+- code dense
+- typage dynamique
+- écosystème volatil 
+- le coté "alien" de la JVM :
+  - Les stacktracess font saigner les yeux
+  - Les exceptions
 
